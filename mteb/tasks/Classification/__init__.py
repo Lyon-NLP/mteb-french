@@ -10,7 +10,7 @@ from .DKHateClassification import *
 from .EmotionClassification import *
 from .ImdbClassification import *
 from .LccSentimentClassification import *
-from .MasakhaNEWSClassification import *
+from .MasakhaneClassification import *
 from .MassiveIntentClassification import *
 from .MassiveScenarioClassification import *
 from .MTOPDomainClassification import *
