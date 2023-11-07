@@ -91,6 +91,14 @@ class MTEB:
             if lang in LangMapping.LANG_MAPPING:
                 self._task_langs += LangMapping.LANG_MAPPING[lang]
 
+    def _extend_lang_code(self):
+        # add all possible language codes
+        langs = set(self._task_langs)
+        for lang in langs:
+            if LangMapping.LANG_MAPPING.get(lang) is not None:
+                self._task_langs.append(LangMapping.LANG_MAPPING[lang])
+        return
+    
     def _extend_lang_pairs(self):
         # add all possible language pairs
         langs = set(self._task_langs)
