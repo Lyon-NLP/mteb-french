@@ -1,8 +1,6 @@
 import re
-import json
 import pandas as pd
 from huggingface_hub import create_repo, upload_file
-from huggingface_hub.utils._errors import HfHubHTTPError
 
 ########################
 # Cleanup queries data #
@@ -44,21 +42,6 @@ def parse_relevant_ids(row):
     return row
 
 alloprof_queries["relevant"] = alloprof_queries["relevant"].apply(parse_relevant_ids)
-
-# Parse the answer
-def parse_answer(row):
-    try:
-        row = json.loads(row)
-        text = []
-        for i in row:
-            if type(i["insert"])is not dict:
-                text.append(i["insert"])
-        text = "".join(text)
-    except:
-        text = row
-    return text.replace("&nbsp;", " ").replace("\u200b", "").replace("\xa0", "")
-
-alloprof_queries["answer"] = alloprof_queries["answer"].apply(parse_answer)
 
 # only keep useful columns
 alloprof_queries = alloprof_queries[["id", "text", "answer", "relevant", "subject"]]
@@ -114,27 +97,21 @@ assert relevants.issubset(alloprof_docs["uuid"].tolist()),\
 
 # create HF repo
 repo_id = "lyon-nlp/alloprof"
-try:
-    create_repo(repo_id, repo_type="dataset")
-except HfHubHTTPError as e:
-    print("HF repo already exist")
+create_repo(repo_id, repo_type="dataset")
 
 # save datasets as json
-# alloprof_queries.to_json("queries.jsonl", orient="records", lines=True)
-# alloprof_docs.to_json("documents.jsonl", orient="records", lines=True)
-
-alloprof_queries.to_json("queries.json", orient="records")
-alloprof_docs.to_json("documents.json", orient="records")
+alloprof_queries.to_json("queries.jsonl", orient="records", lines=True)
+alloprof_docs.to_json("documents.jsonl", orient="records", lines=True)
 
 upload_file(
-    path_or_fileobj="queries.json",
-    path_in_repo="queries.json",
+    path_or_fileobj="queries.jsonl",
+    path_in_repo="queries.jsonl",
     repo_id=repo_id,
     repo_type="dataset"
 )
 upload_file(
-    path_or_fileobj="documents.json",
-    path_in_repo="documents.json",
+    path_or_fileobj="documents.jsonl",
+    path_in_repo="documents.jsonl",
     repo_id=repo_id,
     repo_type="dataset"
 )
