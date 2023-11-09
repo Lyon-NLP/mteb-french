@@ -14,7 +14,7 @@ class OpusparcusPC(AbsTaskPairClassification):
             "reference": "https://gem-benchmark.com/data_cards/opusparcus",
             "category": "s2s",
             "type": "PairClassification",
-            "eval_splits": ["test", "validation"],
+            "eval_splits": ["test.full", "validation.full"],
             "eval_langs": _LANGUAGES,
             "main_score": "ap",
             "revision": "9e9b1f8ef51616073f47f306f7f47dd91663f86a",
@@ -49,12 +49,15 @@ class OpusparcusPC(AbsTaskPairClassification):
 
     def dataset_transform(self, lang):
         for split in self.dataset[lang]:
+            # Renaming features
             labels = self.dataset[lang][split]["annot_score"]
             sent1 = self.dataset[lang][split]["input"]
             sent2 = self.dataset[lang][split]["target"]
             new_dict = {}
-            labels = [0 if label < 3 else 1 if label > 3 else 3 for label in labels]
-            neutral = [i for i, val in enumerate(labels) if val == 3]
+            # Labels are a score between 1.0 and 4.0, and we need binary classification
+            labels = [0 if label < 2.5 else 1 if label > 2.5 else 2.5 for label in labels]
+            # Get neutral label to delete them
+            neutral = [i for i, val in enumerate(labels) if val == 2.5]
             for i in sorted(neutral, reverse=True):
                 del labels[i]
                 del sent1[i]
