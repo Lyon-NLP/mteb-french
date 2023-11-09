@@ -1,9 +1,11 @@
+from collections import Counter
 import os
+
+from huggingface_hub import create_repo, upload_file
+
 import pandas as pd
 import requests
 
-from collections import Counter
-from huggingface_hub import create_repo, upload_file
 
 MAX_OUTPUT = 10000
 NB_RESULTS = 100000
