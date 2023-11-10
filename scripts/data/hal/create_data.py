@@ -1,4 +1,3 @@
-from collections import Counter
 import os
 
 from huggingface_hub import create_repo, upload_file
@@ -43,9 +42,9 @@ create_repo(
 )
 
 upload_file(
-    path_or_fileobj=SAVE_PATH, 
-    path_in_repo=SAVE_PATH, 
-    repo_id=ORGANIZATION + REPO_NAME, 
+    path_or_fileobj=SAVE_PATH,
+    path_in_repo=SAVE_PATH,
+    repo_id=ORGANIZATION + REPO_NAME,
     repo_type="dataset"
 )
 os.system(f"rm {SAVE_PATH}")

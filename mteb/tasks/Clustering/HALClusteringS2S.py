@@ -44,6 +44,6 @@ class HALClusteringS2S(AbsTaskClustering):
         domains = self.dataset["test"]["domain"]
         new_format = {
             "sentences": [split.tolist() for split in np.array_split(titles, 10)],
-            "labels": [split.tolist() for split in np.array_split(domains, 10)]
+            "labels": [split.tolist() for split in np.array_split(domains, 10)],
         }
         self.dataset["test"] = datasets.Dataset.from_dict(new_format)
