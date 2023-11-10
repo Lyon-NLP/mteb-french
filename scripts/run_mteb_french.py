@@ -12,6 +12,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("main")
 
 TASK_LIST_CLASSIFICATION = [
+    "AmazonReviewsClassification",
+    "MasakhaneClassification",
+    "MassiveIntentClassification",
+    "MassiveScenarioClassification",
+    "MTOPDomainClassification",
+    "MTOPIntentClassification",
 ]
 
 TASK_LIST_CLUSTERING = [
