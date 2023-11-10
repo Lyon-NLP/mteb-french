@@ -1,14 +1,19 @@
+from mteb import AbsTaskRetrieval
+from mteb import BeIRTask
+
+
 import datasets
+from mteb import AbsTaskRetrieval
 
-from ...abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 
+class Alloprof(AbsTaskRetrieval):
 
-class AlloprofRetrieval(AbsTaskRetrieval):
+    _EVAL_SPLIT = 'test'
 
     @property
     def description(self):
         return {
-            'name': 'AlloprofRetrieval',
+            'name': 'Alloprof',
             'hf_hub_name': 'lyon-nlp/alloprof',
             'reference': 'https://huggingface.co/datasets/antoinelb7/alloprof',
             "description": (
@@ -20,23 +25,33 @@ class AlloprofRetrieval(AbsTaskRetrieval):
             "eval_splits": ["test"],
             "eval_langs": ["fr"],
             "main_score": "ndcg_at_10",
-            "revision": "392ba3f5bcc8c51f578786c1fc3dae648662cb9b",
         }
-
+    
 
     def load_data(self, **kwargs):
         if self.data_loaded:
             return
         # fetch both subsets of the dataset
-        corpus_raw = datasets.load_dataset(self.description["hf_hub_name"], "documents")
-        queries_raw = datasets.load_dataset(self.description["hf_hub_name"], "queries")
-        eval_split = self.description["eval_splits"][0]
-        self.queries = {eval_split: {str(q["id"]): q["text"] for q in queries_raw[eval_split]}}
-        self.corpus = {eval_split: {str(d["uuid"]): {"text": d["text"]} for d in corpus_raw[eval_split]}}
+        corpus_raw = datasets.load_dataset(self.description['hf_hub_name'], "documents")
+        queries_raw = datasets.load_dataset(self.description['hf_hub_name'], "queries")
 
-        self.relevant_docs = {eval_split: {}}
-        for q in queries_raw[eval_split]:
+        self.queries = {
+            "test": {
+                str(q["id"]):q["text"] for q
+                in queries_raw["queries"]
+                }
+            }
+        
+        self.corpus = {
+            "test": {
+                str(d["uuid"]):{"text":d["text"]} for d
+                in corpus_raw["documents"]
+                }
+            }
+        
+        self.relevant_docs = {"test": {}}
+        for q in queries_raw["queries"]:
             for r in q["relevant"]:
-                self.relevant_docs[eval_split][str(q["id"])] = {r: 1}
+                self.relevant_docs["test"][q["id"]] = {r:1}
 
         self.data_loaded = True
