@@ -2,8 +2,10 @@
 
 import logging
 
-from mteb import MTEB
 from sentence_transformers import SentenceTransformer
+
+from mteb import MTEB
+
 
 logging.basicConfig(level=logging.INFO)
 
