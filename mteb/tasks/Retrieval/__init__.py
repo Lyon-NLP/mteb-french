@@ -43,3 +43,4 @@ from .Touche2020Retrieval import *
 from .TRECCOVIDPLRetrieval import *
 from .NarrativeQARetrieval import *
 from .AlloprofRetrieval import *
+from .BSARDRetrieval import *
