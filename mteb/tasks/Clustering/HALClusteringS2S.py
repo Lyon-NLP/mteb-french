@@ -3,7 +3,6 @@ import numpy as np
 
 from ...abstasks.AbsTaskClustering import AbsTaskClustering
 
-
 class HALClusteringS2S(AbsTaskClustering):
     @property
     def description(self):
@@ -11,7 +10,7 @@ class HALClusteringS2S(AbsTaskClustering):
             "name": "HALClusteringS2S",
             "hf_hub_name": "lyon-nlp/clustering-hal-s2s",
             "description": (
-                "Clustering of titles from HAL (https://hal.science/). Clustering of 10 sets on the main category."
+                "Clustering of titles from HAL. Clustering of 10 sets on the main category."
             ),
             "reference": "https://huggingface.co/datasets/lyon-nlp/clustering-hal-s2s",
             "type": "Clustering",

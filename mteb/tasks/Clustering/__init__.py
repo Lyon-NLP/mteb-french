@@ -7,10 +7,7 @@ from .BiorxivClusteringP2P import *
 from .BiorxivClusteringS2S import *
 from .BlurbsClusteringP2P import *
 from .BlurbsClusteringS2S import *
-from .CMTEBClustering import *
 from .HALClusteringS2S import *
-from .MasakhaNEWSClusteringP2P import *
-from .MasakhaNEWSClusteringS2S import *
 from .MedrxivClusteringP2P import *
 from .MedrxivClusteringS2S import *
 from .MLSUMClusteringP2P import *
