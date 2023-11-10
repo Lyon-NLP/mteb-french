@@ -37,6 +37,7 @@ class HALClusteringS2S(AbsTaskClustering):
 
     def dataset_transform(self):
         # Convert to standard format
+
         self.dataset = self.dataset.remove_columns("hal_id")
         titles = self.dataset["test"]["title"]
         domains = self.dataset["test"]["domain"]
@@ -44,6 +45,4 @@ class HALClusteringS2S(AbsTaskClustering):
             "sentences": [split.tolist() for split in np.array_split(titles, 10)],
             "labels": [split.tolist() for split in np.array_split(domains, 10)]
         }
-        self.dataset = datasets.Dataset.from_dict(new_format)
-        # self.dataset = self.dataset.rename_column("titles", "sentences")
-        # self.dataset = self.dataset.rename_column("domains", "labels")
+        self.dataset["test"] = datasets.Dataset.from_dict(new_format)
