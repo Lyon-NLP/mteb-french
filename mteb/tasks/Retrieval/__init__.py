@@ -50,3 +50,5 @@ from .SCIDOCSPLRetrieval import *
 from .SCIDOCSRetrieval import *
 from .SciFactPLRetrieval import *
 from .TRECCOVIDPLRetrieval import *
+from .NarrativeQARetrieval import *
+from .AlloprofRetrieval import *
