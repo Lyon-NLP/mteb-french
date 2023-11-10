@@ -24,11 +24,24 @@ class AbsTaskPairClassification(AbsTask):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    def _evaluate_monolingual(self, model, dataset, split="test", **kwargs):
+    def evaluate(self, model, split="test", **kwargs):
+        if not self.data_loaded:
+            self.load_data()
+
+        if self.is_multilingual:
+            scores = {}
+            for lang in self.dataset:
+                logger.info(f"\nTask: {self.description['name']}, split: {split}, language: {lang}. Running...")
+                scores[lang] = self._evaluate_monolingual(model, self.dataset[lang], split, **kwargs)
+        else:
+            logger.info(f"\nTask: {self.description['name']}, split: {split}. Running...")
+            scores = self._evaluate_monolingual(model, self.dataset, split, **kwargs)
+
+        return scores
+
+    def _evaluate_monolingual(self, model, dataset, split, **kwargs):
         data_split = dataset[split][0]
-        logging.getLogger(
-            "sentence_transformers.evaluation.PairClassificationEvaluator"
-        ).setLevel(logging.WARN)
+        scores = []
         evaluator = PairClassificationEvaluator(
             data_split["sent1"], data_split["sent2"], data_split["labels"], **kwargs
         )
