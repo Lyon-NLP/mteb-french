@@ -38,6 +38,11 @@ TAKS_LIST_BITEXTMINING = [
     "FloresBitextMining"
 ]
 
+TAKS_LIST_BITEXTMINING = [
+    "DiaBLaBitextMining",
+    "FloresBitextMining"
+]
+
 TASK_LIST = (
     TAKS_LIST_BITEXTMINING
     + TASK_LIST_CLASSIFICATION
