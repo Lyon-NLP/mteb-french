@@ -7,7 +7,7 @@ from ...abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 
 class HagridRetrieval(AbsTaskRetrieval):
 
-    _EVAL_SPLIT = 'dev'
+    _EVAL_SPLIT = 'test'
 
     @property
     def description(self):
@@ -22,10 +22,9 @@ class HagridRetrieval(AbsTaskRetrieval):
             ),
             "type": "Retrieval",
             "category": "s2p",
-            "eval_splits": ["dev"],
+            "eval_splits": ["test"],
             "eval_langs": ["en"],
             "main_score": "ndcg_at_10",
-            "revision" : "b2a085913606be3c4f2f1a8bff1810e38bade8fa",
         }
 
     def load_data(self, **kwargs):
@@ -35,10 +34,7 @@ class HagridRetrieval(AbsTaskRetrieval):
         if self.data_loaded:
             return
 
-        data = datasets.load_dataset(
-            "miracl/hagrid",
-            split=self._EVAL_SPLIT,
-            revision=self.description.get("revision", None))
+        data = datasets.load_dataset("miracl/hagrid", split="dev")
         proc_data = self.preprocess_data(data)
 
         self.queries = {self._EVAL_SPLIT: {d["query_id"]: d['query_text'] for d in proc_data}}
