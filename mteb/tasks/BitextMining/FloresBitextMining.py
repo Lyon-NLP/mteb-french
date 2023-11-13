@@ -252,7 +252,6 @@ class FloresBitextMining(AbsTaskBitextMining, CrosslingualTask):
             return
         self.dataset = {}
         for lang in self.langs:
-            print("loading for lang : ", lang)
             self.dataset[lang] = datasets.load_dataset(
                 self.description["hf_hub_name"],
                 lang,
@@ -263,11 +262,9 @@ class FloresBitextMining(AbsTaskBitextMining, CrosslingualTask):
 
     def dataset_transform(self):
         # Convert to standard format
-        print(self.dataset)
         for lang in self.langs:
             lang1 = lang.split("-")[0]
             lang2 = lang.split("-")[1]
             for split in _SPLIT:
                 self.dataset[lang][split] = self.dataset[lang][split].rename_column("sentence_" + lang1, "sentence1")
                 self.dataset[lang][split] = self.dataset[lang][split].rename_column("sentence_" + lang2, "sentence2")
-            print(self.dataset)
