@@ -19,9 +19,11 @@ TASK_LIST_CLASSIFICATION = [
     "MTOPIntentClassification",
 ]
 
-TASK_LIST_CLUSTERING = []
+TASK_LIST_CLUSTERING = ["HALClusteringS2S"]
 
-TASK_LIST_PAIR_CLASSIFICATION = []
+TASK_LIST_PAIR_CLASSIFICATION = [
+    "OpusparcusPC",
+]
 
 TASK_LIST_RERANKING = []
 
@@ -29,16 +31,19 @@ TASK_LIST_RETRIEVAL = []
 
 TASK_LIST_STS = []
 
-TAKS_LIST_BITEXTMINING = ["DiaBLaBitextMining"]
+TAKS_LIST_BITEXTMINING = [
+    "DiaBLaBitextMining",
+]
+
 
 TASK_LIST = (
-    TAKS_LIST_BITEXTMINING
-    + TASK_LIST_CLASSIFICATION
+    TASK_LIST_CLASSIFICATION
     + TASK_LIST_CLUSTERING
     + TASK_LIST_PAIR_CLASSIFICATION
     + TASK_LIST_RERANKING
     + TASK_LIST_RETRIEVAL
     + TASK_LIST_STS
+    + TAKS_LIST_BITEXTMINING
 )
 
 model_name = "dangvantuan/sentence-camembert-base"
@@ -46,6 +51,5 @@ model = SentenceTransformer(model_name)
 logger.info(f"Task list : {TASK_LIST}")
 for task in TASK_LIST:
     logger.info(f"Running task: {task}")
-    eval_splits = ["dev"] if task == "MSMARCO" else ["test"]
-    evaluation = MTEB(tasks=[task], task_langs=["fr"])  # Remove "fr" for running all languages
-    evaluation.run(model, output_folder=f"results/{model_name}", eval_splits=eval_splits)
+    evaluation = MTEB(tasks=[task], task_langs=["fr", "en"])  # Remove "fr" for running all languages
+    evaluation.run(model, output_folder=f"results/{model_name}")
