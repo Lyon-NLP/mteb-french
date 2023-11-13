@@ -33,6 +33,7 @@ TASK_LIST_STS = []
 
 TAKS_LIST_BITEXTMINING = [
     "DiaBLaBitextMining",
+    "FloresBitextMining",
 ]
 
 
@@ -51,5 +52,5 @@ model = SentenceTransformer(model_name)
 logger.info(f"Task list : {TASK_LIST}")
 for task in TASK_LIST:
     logger.info(f"Running task: {task}")
-    evaluation = MTEB(tasks=[task], task_langs=["fr", "en"])  # Remove "fr" for running all languages
+    evaluation = MTEB(tasks=[task], task_langs=["fr"])  # Remove "fr" for running all languages
     evaluation.run(model, output_folder=f"results/{model_name}")
