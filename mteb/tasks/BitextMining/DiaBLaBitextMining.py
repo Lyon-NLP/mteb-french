@@ -20,6 +20,7 @@ class DiaBLaBitextMining(AbsTaskBitextMining):
             "eval_splits": ["test"],
             "eval_langs": ["fr"],
             "main_score": "f1",
+            "revision": "5345895c56a601afe1a98519ce3199be60a27dba",
         }
 
     def load_data(self, **kwargs):
