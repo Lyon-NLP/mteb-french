@@ -9,16 +9,19 @@ class DiaBLaBitextMining(AbsTaskBitextMining):
         return {
             "name": "DiaBLaBitextMining",
             "hf_hub_name": "rbawden/DiaBLa",
-            "description": "English-French Parallel Corpus. "
-            + "DiaBLa is an Englis-French dataset for the evaluation of Machine Translation (MT) for informal, written bilingual dialogue.",
+            "description": (
+                "English-French Parallel Corpus. "
+                + "DiaBLa is an Englis-French dataset for the evaluation of Machine Translation (MT) for informal,"
+                " written bilingual dialogue."
+            ),
             "reference": "https://inria.hal.science/hal-03021633",
             "type": "BitextMining",
             "category": "s2s",
             "eval_splits": ["test"],
-            "eval_langs": ["fr", "en"],
+            "eval_langs": ["fr"],
             "main_score": "f1",
         }
-    
+
     def load_data(self, **kwargs):
         """
         Load dataset from HuggingFace hub and convert it to the standard format.
