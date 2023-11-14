@@ -3,7 +3,6 @@ import numpy as np
 
 from ...abstasks.AbsTaskClustering import AbsTaskClustering
 
-
 class AlloProfClusteringP2P(AbsTaskClustering):
     @property
     def description(self):
@@ -19,7 +18,7 @@ class AlloProfClusteringP2P(AbsTaskClustering):
             "eval_splits": ["test"],
             "eval_langs": ["fr"],
             "main_score": "v_measure",
-            "revision": "392ba3f5bcc8c51f578786c1fc3dae648662cb9b",
+            "revision": "3e394f99549416c102c44af9b38460d0d07fa10f",
         }
 
     def load_data(self, **kwargs):
@@ -55,3 +54,4 @@ class AlloProfClusteringP2P(AbsTaskClustering):
         }
         self.dataset["test"] = datasets.Dataset.from_dict(new_format)
         self.dataset.pop("documents")
+        
