@@ -1,6 +1,8 @@
 import datasets
 import numpy as np
+
 from ...abstasks.AbsTaskClustering import AbsTaskClustering
+
 class AlloProfClusteringS2S(AbsTaskClustering):
     @property
     def description(self):
@@ -18,6 +20,7 @@ class AlloProfClusteringS2S(AbsTaskClustering):
             "main_score": "v_measure",
             "revision": "3e394f99549416c102c44af9b38460d0d07fa10f",
         }
+    
     def load_data(self, **kwargs):
         """
         Load dataset from HuggingFace hub and convert it to the standard format.
@@ -31,6 +34,7 @@ class AlloProfClusteringS2S(AbsTaskClustering):
         )
         self.dataset_transform()
         self.data_loaded = True
+
     def dataset_transform(self):
         """
         Convert to standard format
@@ -45,3 +49,4 @@ class AlloProfClusteringS2S(AbsTaskClustering):
         }
         self.dataset["test"] = datasets.Dataset.from_dict(new_format)
         self.dataset.pop("documents")
+        

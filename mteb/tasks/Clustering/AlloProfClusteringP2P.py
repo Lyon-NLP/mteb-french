@@ -54,3 +54,4 @@ class AlloProfClusteringP2P(AbsTaskClustering):
         }
         self.dataset["test"] = datasets.Dataset.from_dict(new_format)
         self.dataset.pop("documents")
+        
