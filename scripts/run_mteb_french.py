@@ -23,6 +23,8 @@ TASK_LIST_CLUSTERING = [
     "AlloProfClusteringP2P",
     "AlloProfClusteringS2S",
     "HALClusteringS2S",
+    "MasakhaneClusteringP2P",
+    "MasakhaneClusteringS2S",
 ]
 
 TASK_LIST_PAIR_CLASSIFICATION = [
@@ -31,7 +33,11 @@ TASK_LIST_PAIR_CLASSIFICATION = [
 
 TASK_LIST_RERANKING = []
 
-TASK_LIST_RETRIEVAL = ["AlloprofRetrieval", "BSARDRetrieval", "HagridRetrieval"]
+TASK_LIST_RETRIEVAL = [
+    "AlloprofRetrieval", 
+    "BSARDRetrieval", 
+    "HagridRetrieval"
+]
 
 TASK_LIST_STS = []
 
