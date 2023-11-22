@@ -3,6 +3,7 @@ import numpy as np
 
 from ...abstasks.AbsTaskClustering import AbsTaskClustering
 
+
 class HALClusteringS2S(AbsTaskClustering):
     @property
     def description(self):

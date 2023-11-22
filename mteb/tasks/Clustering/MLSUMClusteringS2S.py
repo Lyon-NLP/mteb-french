@@ -31,7 +31,6 @@ class MLSUMClusteringS2S(AbsTaskClustering):
         self.dataset = datasets.load_dataset(
             self.description["hf_hub_name"],
             "fr",
-            split=self.description["eval_splits"][0],
             revision=self.description.get("revision", None),
         )
         self.dataset_transform()
@@ -41,9 +40,16 @@ class MLSUMClusteringS2S(AbsTaskClustering):
         """
         Convert to standard format
         """
-        self.dataset = self.dataset.remove_columns(["summary", "text", "url", "date"])
+        self.dataset.pop("train")
+        self.dataset.pop("validation")
+        self.dataset = self.dataset.remove_columns("summary")
+        self.dataset = self.dataset.remove_columns("text")
+        self.dataset = self.dataset.remove_columns("url")
+        self.dataset = self.dataset.remove_columns("date")
+        titles = self.dataset["test"]["title"]
+        topics = self.dataset["test"]["topic"]
         new_format = {
-            "sentences": [split.tolist() for split in np.array_split(self.dataset["title"], 10)],
-            "labels": [split.tolist() for split in np.array_split(self.dataset["topic"], 10)],
+            "sentences": [split.tolist() for split in np.array_split(titles, 10)],
+            "labels": [split.tolist() for split in np.array_split(topics, 10)],
         }
-        self.dataset = {self.description["eval_splits"][0]: datasets.Dataset.from_dict(new_format)}
+        self.dataset["test"] = datasets.Dataset.from_dict(new_format)
