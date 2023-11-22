@@ -13,6 +13,8 @@ from .MasakhaneClusteringP2P import *
 from .MasakhaneClusteringS2S import *
 from .MedrxivClusteringP2P import *
 from .MedrxivClusteringS2S import *
+from .MLSUMClusteringP2P import *
+from .MLSUMClusteringS2S import *
 from .PolishClustering import *
 from .RedditClustering import *
 from .RedditClusteringP2P import *

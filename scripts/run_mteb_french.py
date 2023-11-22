@@ -25,6 +25,8 @@ TASK_LIST_CLUSTERING = [
     "HALClusteringS2S",
     "MasakhaneClusteringP2P",
     "MasakhaneClusteringS2S",
+    "MLSUMClusteringP2P",
+    "MLSUMClusteringS2S",
 ]
 
 TASK_LIST_PAIR_CLASSIFICATION = [
