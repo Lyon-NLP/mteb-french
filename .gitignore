@@ -6,8 +6,11 @@
 results/
 
 # BeIR datasets folder
-
 datasets/
+
+# Custom dataset files
+syntec.json
+syntec.xlsx
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
