@@ -38,7 +38,8 @@ TASK_LIST_RERANKING = []
 TASK_LIST_RETRIEVAL = [
     "AlloprofRetrieval", 
     "BSARDRetrieval", 
-    "HagridRetrieval"
+    "HagridRetrieval",
+    "SyntecRetrieval"
 ]
 
 TASK_LIST_STS = []
