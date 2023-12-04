@@ -3,7 +3,7 @@ import datasets
 from ...abstasks.AbsTaskRetrieval import AbsTaskRetrieval
 
 
-class SyntectRetrieval(AbsTaskRetrieval):
+class SyntecRetrieval(AbsTaskRetrieval):
     _EVAL_SPLITS = ["test"]
 
 
