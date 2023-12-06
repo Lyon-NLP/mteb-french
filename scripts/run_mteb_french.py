@@ -12,7 +12,7 @@ logger = logging.getLogger("main")
 
 TASK_LIST_CLASSIFICATION = [
     "AmazonReviewsClassification",
-    "MasakhaneClassification",
+    "MasakhaNEWSClassification",
     "MassiveIntentClassification",
     "MassiveScenarioClassification",
     "MTOPDomainClassification",
@@ -23,8 +23,8 @@ TASK_LIST_CLUSTERING = [
     "AlloProfClusteringP2P",
     "AlloProfClusteringS2S",
     "HALClusteringS2S",
-    "MasakhaneClusteringP2P",
-    "MasakhaneClusteringS2S",
+    "MasakhaNEWSClusteringP2P",
+    "MasakhaNEWSClusteringS2S",
     "MLSUMClusteringP2P",
     "MLSUMClusteringS2S",
 ]
