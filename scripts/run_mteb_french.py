@@ -42,9 +42,11 @@ TASK_LIST_RETRIEVAL = [
     "SyntecRetrieval"
 ]
 
-TASK_LIST_STS = []
+TASK_LIST_STS = [
+    "SummEvalFr"
+]
 
-TAKS_LIST_BITEXTMINING = [
+TASK_LIST_BITEXTMINING = [
     "DiaBLaBitextMining",
     "FloresBitextMining",
 ]
@@ -57,7 +59,7 @@ TASK_LIST = (
     + TASK_LIST_RERANKING
     + TASK_LIST_RETRIEVAL
     + TASK_LIST_STS
-    + TAKS_LIST_BITEXTMINING
+    + TASK_LIST_BITEXTMINING
 )
 
 model_name = "dangvantuan/sentence-camembert-base"
