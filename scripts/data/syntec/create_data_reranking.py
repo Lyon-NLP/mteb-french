@@ -5,8 +5,9 @@ from huggingface_hub import create_repo
 from huggingface_hub.utils._errors import HfHubHTTPError
 
 """
-To create a reranking dataset from the initial retrieval dataset, we use a model to embed
-the queries and the documents. We then compute the cosine similarity for each query and document.
+To create a reranking dataset from the initial retrieval dataset, 
+we use a model (sentence-transformers/all-MiniLM-L6-v2) to embed the queries and the documents.
+We then compute the cosine similarity for each query and document.
 For each query we get the topk articles, as we would for a retrieval task.
 Each couple query-document is labeled as relevant if it was labeled like so in the retrieval dataset,
 or irrelevant if it was not
