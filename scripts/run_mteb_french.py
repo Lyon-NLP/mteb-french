@@ -45,7 +45,10 @@ TASK_LIST_RETRIEVAL = [
     "SyntecRetrieval"
 ]
 
-TASK_LIST_STS = []
+TASK_LIST_STS = [
+    "STSBenchmarkMultilingualSTS",
+    "STS22"
+]
 
 TAKS_LIST_BITEXTMINING = [
     "DiaBLaBitextMining",
