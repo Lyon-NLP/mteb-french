@@ -49,7 +49,7 @@ TASK_LIST_STS = [
     "SummEvalFr",
     "STSBenchmarkMultilingualSTS",
     "STS22",
-    "SICKfr"
+    "SICKFr"
 ]
 
 TASK_LIST_BITEXTMINING = [

@@ -1,12 +1,12 @@
 from ...abstasks.AbsTaskSTS import AbsTaskSTS
 
 
-class SICKfr(AbsTaskSTS):
+class SickFrSTS(AbsTaskSTS):
     @property
     def description(self):
         return {
-            "name": "SICKfr",
-            "hf_hub_name": "lyon-nlp/SICK-fr",
+            "name": "SICKFr",
+            "hf_hub_name": "lyon-nlp/sick-fr",
             "description": "SICK dataset french version",
             "reference": "https://huggingface.co/datasets/Lajavaness/SICK-fr",
             "type": "STS",
