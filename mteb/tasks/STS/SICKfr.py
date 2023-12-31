@@ -6,7 +6,7 @@ class SICKfr(AbsTaskSTS):
     def description(self):
         return {
             "name": "SICKfr",
-            "hf_hub_name": "Lajavaness/SICK-fr",
+            "hf_hub_name": "lyon-nlp/SICK-fr",
             "description": "SICK dataset french version",
             "reference": "https://huggingface.co/datasets/Lajavaness/SICK-fr",
             "type": "STS",
