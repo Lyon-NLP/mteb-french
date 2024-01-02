@@ -16,5 +16,5 @@ class SickFrSTS(AbsTaskSTS):
             "main_score": "cosine_spearman",
             "min_score": 1,
             "max_score": 5,
-            "revision": "e077ab4cf4774a1e36d86d593b150422fafd8e8a",
+            "revision": "ad1bddc5f1407c30089cdeaf4f5d88792db50f24",
         }
