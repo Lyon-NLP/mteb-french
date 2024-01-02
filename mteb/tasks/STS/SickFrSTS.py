@@ -1,4 +1,5 @@
 from ...abstasks.AbsTaskSTS import AbsTaskSTS
+import datasets
 
 
 class SickFrSTS(AbsTaskSTS):
@@ -6,7 +7,7 @@ class SickFrSTS(AbsTaskSTS):
     def description(self):
         return {
             "name": "SICKFr",
-            "hf_hub_name": "lyon-nlp/sick-fr",
+            "hf_hub_name": "Lajavaness/SICK-fr",
             "description": "SICK dataset french version",
             "reference": "https://huggingface.co/datasets/Lajavaness/SICK-fr",
             "type": "STS",
@@ -16,5 +17,22 @@ class SickFrSTS(AbsTaskSTS):
             "main_score": "cosine_spearman",
             "min_score": 1,
             "max_score": 5,
-            "revision": "ad1bddc5f1407c30089cdeaf4f5d88792db50f24",
+            "revision": "e077ab4cf4774a1e36d86d593b150422fafd8e8a",
         }
+    
+    def load_data(self, **kwargs):
+        """
+        Load dataset from HuggingFace hub and rename columns to the standard format.
+        """
+        if self.data_loaded:
+            return
+
+        self.dataset = datasets.load_dataset(
+            self.description["hf_hub_name"], revision=self.description.get("revision", None)
+        )
+
+        self.dataset = self.dataset.rename_column("sentence_A", "sentence1")
+        self.dataset = self.dataset.rename_column("sentence_B", "sentence2")
+        self.dataset = self.dataset.rename_column("relatedness_score", "score")
+        self.dataset = self.dataset.rename_column("Unnamed: 0", "id")
+        self.data_loaded = True
