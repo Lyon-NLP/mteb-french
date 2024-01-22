@@ -33,7 +33,6 @@ class DiaBLaBitextMining(AbsTaskBitextMining, CrosslingualTask):
 
         self.dataset = {}
         for lang in self.langs:
-            print(lang)
             self.dataset[lang] = datasets.load_dataset(
                 self.description["hf_hub_name"],
                 revision=self.description.get("revision", None),
