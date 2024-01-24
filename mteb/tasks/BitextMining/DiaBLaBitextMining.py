@@ -19,7 +19,7 @@ class DiaBLaBitextMining(AbsTaskBitextMining, CrosslingualTask):
             "type": "BitextMining",
             "category": "s2s",
             "eval_splits": ["test"],
-            "eval_langs": ["fr", "en"],
+            "eval_langs": ["fr-en"],
             "main_score": "f1",
             "revision": "5345895c56a601afe1a98519ce3199be60a27dba",
         }
@@ -30,7 +30,7 @@ class DiaBLaBitextMining(AbsTaskBitextMining, CrosslingualTask):
         """
         if self.data_loaded:
             return
-
+        
         self.dataset = {}
         for lang in self.langs:
             self.dataset[lang] = datasets.load_dataset(
@@ -52,7 +52,3 @@ class DiaBLaBitextMining(AbsTaskBitextMining, CrosslingualTask):
         # Convert to standard format
         for lang in self.langs:
             self.dataset[lang] = self.dataset[lang].map(create_columns)
-            if lang == "en":
-                self.dataset[lang]["test"] = self.dataset[lang]["test"].rename_column("sentence2", "sentence_1")
-                self.dataset[lang]["test"] = self.dataset[lang]["test"].rename_column("sentence1", "sentence2")
-                self.dataset[lang]["test"] = self.dataset[lang]["test"].rename_column("sentence_1", "sentence1")
