@@ -22,9 +22,9 @@ TASK_LIST_CLASSIFICATION = [
 TASK_LIST_CLUSTERING = [
     "AlloProfClusteringP2P",
     "AlloProfClusteringS2S",
+    "HALClusteringS2S",
     "MasakhaNEWSClusteringP2P",
     "MasakhaNEWSClusteringS2S",
-    "HALClusteringS2S",
     "MLSUMClusteringP2P",
     "MLSUMClusteringS2S",
 ]
