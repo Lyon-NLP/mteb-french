@@ -20,11 +20,11 @@ TASK_LIST_CLASSIFICATION = [
 ]
 
 TASK_LIST_CLUSTERING = [
+    "MasakhaNEWSClusteringP2P",
+    "MasakhaNEWSClusteringS2S",
     "AlloProfClusteringP2P",
     "AlloProfClusteringS2S",
     "HALClusteringS2S",
-    "MasakhaNEWSClusteringP2P",
-    "MasakhaNEWSClusteringS2S",
     "MLSUMClusteringP2P",
     "MLSUMClusteringS2S",
 ]
@@ -62,8 +62,8 @@ TASK_LIST_BITEXTMINING = [
 
 
 TASK_LIST = (
-    TASK_LIST_CLASSIFICATION
-    + TASK_LIST_CLUSTERING
+    TASK_LIST_CLUSTERING
+    + TASK_LIST_CLASSIFICATION
     + TASK_LIST_PAIR_CLASSIFICATION
     + TASK_LIST_RERANKING
     + TASK_LIST_RETRIEVAL

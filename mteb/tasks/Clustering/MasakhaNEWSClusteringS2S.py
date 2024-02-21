@@ -23,7 +23,7 @@ _LANGUAGES =[
 ]
 
 
-class MasakhaNEWSClusteringS2S(AbsTaskClustering):
+class MasakhaNEWSClusteringS2S(AbsTaskClustering, MultilingualTask):
     @property
     def description(self):
         return {

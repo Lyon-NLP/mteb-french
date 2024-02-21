@@ -13,6 +13,12 @@ class AbsTaskClustering(AbsTask):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    def _add_main_score(self, scores):
+        if self.description["main_score"] in scores:
+            scores["main_score"] = scores[self.description["main_score"]]
+        else:
+            logger.warn(f"main score {self.description['main_score']} not found in scores {scores.keys()}")
+            
     def evaluate(self, model, split="test", **kwargs):
         if not self.data_loaded:
             self.load_data()
