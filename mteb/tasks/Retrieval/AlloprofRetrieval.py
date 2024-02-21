@@ -27,8 +27,8 @@ class AlloprofRetrieval(AbsTaskRetrieval):
         if self.data_loaded:
             return
         # fetch both subsets of the dataset
-        corpus_raw = datasets.load_dataset(self.description["hf_hub_name"], "documents", trust_remote_code=True)
-        queries_raw = datasets.load_dataset(self.description["hf_hub_name"], "queries", trust_remote_code=True)
+        corpus_raw = datasets.load_dataset(self.description["hf_hub_name"], "documents")
+        queries_raw = datasets.load_dataset(self.description["hf_hub_name"], "queries")
         eval_split = self.description["eval_splits"][0]
         self.queries = {eval_split: {str(q["id"]): q["text"] for q in queries_raw[eval_split]}}
         self.corpus = {eval_split: {str(d["uuid"]): {"text": d["text"]} for d in corpus_raw["documents"]}}

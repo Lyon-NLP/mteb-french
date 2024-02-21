@@ -35,14 +35,12 @@ class BSARDRetrieval(AbsTaskRetrieval):
             self.description["hf_hub_name"],
             "corpus", split="corpus",
             revision=self.description.get("revision", None),
-            trust_remote_code=True,
         )
         queries_raw = datasets.load_dataset(
             self.description["hf_hub_name"],
             "questions",
             split=self._EVAL_SPLITS[0],
             revision=self.description.get("revision", None),
-            trust_remote_code=True,
         )
 
         self.queries = {
