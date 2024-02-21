@@ -30,19 +30,18 @@ class SyntecRetrieval(AbsTaskRetrieval):
         if self.data_loaded:
             return
         # fetch both subsets of the dataset
-        corpus_raw = datasets.load_dataset(self.description["hf_hub_name"], "documents", trust_remote_code=True)
-        queries_raw = datasets.load_dataset(self.description["hf_hub_name"], "queries", trust_remote_code=True)
+        corpus_raw = datasets.load_dataset(self.description["hf_hub_name"], "documents")
+        queries_raw = datasets.load_dataset(self.description["hf_hub_name"], "queries")
 
         self.queries = {
             self._EVAL_SPLITS[0]: {
                 str(i): q["Question"] 
                 for i, q in enumerate(queries_raw["queries"])}
             }
-        self.corpus = {
-            self._EVAL_SPLITS[0]: {
-                str(d["id"]): {"text": d["title"] + "\n\n" + d["content"]} 
-                for d in corpus_raw["documents"]
-                }}
+
+        corpus_raw = corpus_raw["documents"]
+        corpus_raw = corpus_raw.rename_column("content", "text")
+        self.corpus = {self._EVAL_SPLITS[0]: {str(row["id"]): row for row in corpus_raw}}
 
         self.relevant_docs = {
             self._EVAL_SPLITS[0]: {
