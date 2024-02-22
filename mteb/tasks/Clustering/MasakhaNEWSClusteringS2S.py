@@ -61,21 +61,14 @@ class MasakhaNEWSClusteringS2S(AbsTaskClustering, MultilingualTask):
         """
         Convert to standard format
         """
-        self.dataset[lang] = self.dataset[lang].remove_columns(["url", "text", "headline_text"])
-        texts = (
-            self.dataset[lang]["train"]["headline"]
-            + self.dataset[lang]["validation"]["headline"]
-            + self.dataset[lang]["test"]["headline"]
-        )
-        labels = (
-            self.dataset[lang]["train"]["label"] 
-            + self.dataset[lang]["validation"]["label"] 
-            + self.dataset[lang]["test"]["label"]
-        )
-        new_format = {
-            "sentences": [split.tolist() for split in np.array_split(texts, 10)],
-            "labels": [split.tolist() for split in np.array_split(labels, 10)],
-        }
-        self.dataset[lang]["test"] = datasets.Dataset.from_dict(new_format)
         self.dataset[lang].pop("train")
         self.dataset[lang].pop("validation")
+
+        self.dataset[lang] = self.dataset[lang].remove_columns(["url", "text", "headline_text"])
+        texts = self.dataset[lang]["test"]["headline"]
+        labels = self.dataset[lang]["test"]["label"]
+        new_format = {
+            "sentences": [split.tolist() for split in np.array_split(texts, 5)],
+            "labels": [split.tolist() for split in np.array_split(labels, 5)],
+        }
+        self.dataset[lang]["test"] = datasets.Dataset.from_dict(new_format)
