@@ -16,7 +16,7 @@ class SyntecRetrieval(AbsTaskRetrieval):
         reference="https://huggingface.co/datasets/lyon-nlp/mteb-fr-retrieval-syntec-s2p",
         dataset={
             "path": "lyon-nlp/mteb-fr-retrieval-syntec-s2p",
-            "revision": "aa460cd4d177e6a3c04fcd2affd95e8243289033",
+            "revision": "10bc0983d37ddab22e5b0be34f703926bfd477fa",
         },
         type="Retrieval",
         category="s2p",
@@ -52,11 +52,11 @@ class SyntecRetrieval(AbsTaskRetrieval):
 
         self.queries = {
             self._EVAL_SPLITS[0]: {
-                str(i): q["Question"] for i, q in enumerate(queries_raw["queries"])
+                str(i): q["Question"] for i, q in enumerate(queries_raw[self._EVAL_SPLITS[0]])
             }
         }
 
-        corpus_raw = corpus_raw["documents"]
+        corpus_raw = corpus_raw[self._EVAL_SPLITS[0]]
         corpus_raw = corpus_raw.rename_column("content", "text")
         self.corpus = {
             self._EVAL_SPLITS[0]: {str(row["id"]): row for row in corpus_raw}
@@ -65,7 +65,7 @@ class SyntecRetrieval(AbsTaskRetrieval):
         self.relevant_docs = {
             self._EVAL_SPLITS[0]: {
                 str(i): {str(q["Article"]): 1}
-                for i, q in enumerate(queries_raw["queries"])
+                for i, q in enumerate(queries_raw[self._EVAL_SPLITS[0]])
             }
         }
 
