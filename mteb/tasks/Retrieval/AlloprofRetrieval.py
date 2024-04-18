@@ -32,7 +32,7 @@ class AlloprofRetrieval(AbsTaskRetrieval):
         queries_raw = datasets.load_dataset(self.description["hf_hub_name"], "queries")
         eval_split = self.description["eval_splits"][0]
         self.queries = {eval_split: {str(q["id"]): q["text"] for q in queries_raw[eval_split]}}
-        self.corpus = {eval_split: {str(d["uuid"]): {"text": d["text"]} for d in corpus_raw["documents"]}}
+        self.corpus = {eval_split: {str(d["uuid"]): {"text": d["text"]} for d in corpus_raw[eval_split]}}
 
         self.relevant_docs = {eval_split: {}}
         for q in queries_raw[eval_split]:
