@@ -71,6 +71,8 @@ TASK_LIST = (
     + TASK_LIST_STS
 )
 
+TASK_LIST = ["AlloprofRetrieval", "SyntecRetrieval"]
+
 model_name = "dangvantuan/sentence-camembert-base"
 model = SentenceTransformer(model_name)
 
