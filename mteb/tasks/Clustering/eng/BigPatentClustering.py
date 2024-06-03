@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 from mteb.abstasks.AbsTaskClustering import AbsTaskClustering
-from mteb.abstasks.AbsTaskClusteringFast import AbsTaskClusteringFast
+from mteb.abstasks.AbsTaskClusteringFast import (
+    AbsTaskClusteringFast,
+    check_label_distribution,
+)
 from mteb.abstasks.TaskMetadata import TaskMetadata
 
 NUM_SAMPLES = 2048
 
 
 class BigPatentClustering(AbsTaskClustering):
-    superseeded_by = "BigPatentClusteringFast"
+    superseeded_by = "BigPatentClustering.v2"
 
     metadata = TaskMetadata(
         name="BigPatentClustering",
@@ -42,7 +45,7 @@ class BigPatentClustering(AbsTaskClustering):
 class BigPatentClusteringFast(AbsTaskClusteringFast):
     max_depth = 1
     metadata = TaskMetadata(
-        name="BigPatentClusteringFast",
+        name="BigPatentClustering.v2",
         description="Clustering of documents from the Big Patent dataset. Test set only includes documents"
         "belonging to a single category, with a total of 9 categories.",
         reference="https://huggingface.co/datasets/NortheasternUniversity/big_patent",
@@ -88,6 +91,8 @@ class BigPatentClusteringFast(AbsTaskClusteringFast):
     )
 
     def dataset_transform(self):
+        for split in self.metadata.eval_splits:
+            check_label_distribution(self.dataset[split])
         self.dataset = self.stratified_subsampling(
             self.dataset,
             self.seed,
