@@ -15,7 +15,8 @@ class HALClusteringS2S(AbsTaskClustering):
         reference="https://huggingface.co/datasets/lyon-nlp/clustering-hal-s2s",
         dataset={
             "path": "lyon-nlp/clustering-hal-s2s",
-            "revision": "e06ebbbb123f8144bef1a5d18796f3dec9ae2915",
+            "name": "mteb_eval",
+            "revision": "dede868bf6079ab5a09ab5c525f507fd0cf5fc3a",
         },
         type="Clustering",
         category="s2s",
