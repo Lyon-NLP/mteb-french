@@ -11,7 +11,7 @@ class SummEvalFrSummarization(AbsTaskSummarization):
         reference="https://github.com/Yale-LILY/SummEval",
         dataset={
             "path": "lyon-nlp/summarization-summeval-fr-p2p",
-            "revision": "b385812de6a9577b6f4d0f88c6a6e35395a94054",
+            "revision": "08e37d5b2920587685f5289d21303d72519fde3a",
         },
         type="Summarization",
         category="p2p",
